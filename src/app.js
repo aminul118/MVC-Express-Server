@@ -1,26 +1,19 @@
-// definations
 const express = require("express");
 const cors = require("cors");
 const { foodCollections } = require("./utils/dbConnect");
+const { foodRouter } = require("./routes/foods.routes");
+
 const app = express();
 
-// middlewares
+// Middlewares
 app.use(express.json());
 app.use(cors());
+// app.use(router);
 
-// playground
-app.post("/foods", async (req, res) => {
-  const food = req.body;
-  console.log(food);
-  const result = (await foodCollections).insertOne(food);
-  res.send(result);
-});
+// Food Routes
+app.use("/api", foodRouter);
 
-app.get("/foods", async (req, res) => {
-  const result = (await foodCollections).find().toArray();
-  res.send(result);
-});
-
+// Root Route
 app.get("/", (req, res) => {
   res.send({
     status: 200,
