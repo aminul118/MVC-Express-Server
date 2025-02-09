@@ -8,9 +8,8 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(cors());
-// app.use(router);
 
-// Food Routes
+// Routes
 app.use("/api", foodRouter);
 
 // Root Route
