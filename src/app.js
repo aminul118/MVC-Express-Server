@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const { foodCollections } = require("./utils/dbConnect");
 const { foodRouter } = require("./routes/foods.routes");
 
 const app = express();

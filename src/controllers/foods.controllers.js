@@ -43,4 +43,24 @@ const getIndivisualFood = async (req, res) => {
   }
 };
 
-module.exports = { postFood, getFoods, getIndivisualFood };
+// Delete by id
+const deleteIndivisualFood = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const query = {
+      _id: new ObjectId(id),
+    };
+    const collection = await foodCollections;
+    const result = await collection.deleteOne(query);
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+};
+
+module.exports = {
+  postFood,
+  getFoods,
+  getIndivisualFood,
+  deleteIndivisualFood,
+};
